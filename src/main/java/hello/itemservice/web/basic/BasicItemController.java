@@ -76,10 +76,16 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
+    }
+
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
@@ -89,12 +95,11 @@ public class BasicItemController {
         return "basic/editForm";
     }
 
-    @PostMapping("/{itemId}/edit")
+//    @PostMapping("/{itemId}/edit")
     public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
         itemRepository.update(itemId, item);
         return "redirect:/basic/items/{itemId}";
     }
-
 
     /**
      * 테스트용 데이터 추가
